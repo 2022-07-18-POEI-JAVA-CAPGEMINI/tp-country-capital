@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz capitale pays</title>
+    <style>
+    </style>
+</head>
+<body>
+<h1>Quiz capitale pays</h1>
+
+<p th:if="${win == 'true'}">Bravo, bonne réponse !</p>
+<p th:if="${win == 'false'}">Perdu, mauvaise réponse !</p>
+
+<p>Quelle est la capitale du pays suivant : </p>
+<p th:text="${question.getCorrectAnswer().getName()}"></p>
+
+<form method="POST" action="play">
+    <input th:each="pays: ${question.getSelectedCountries()}" type="radio" name="proposition" id="" th:value="${pays.getCapital()}" th:text="${pays.getCapital()}"/>
+    <br/>
+    <input type="submit" value="Jouer"/>
+</form>
+
+</body>
+</html>
